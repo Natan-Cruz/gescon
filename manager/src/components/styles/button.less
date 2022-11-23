@@ -1,0 +1,61 @@
+.button {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    :disabled {
+        opacity: .7;
+    }
+}
+
+.button-primary {
+    background: #FF7900;
+    border: none;
+    color: #fff;
+    transition: 250ms;
+    &:active {
+        transform: scale(.95, .95);
+    }
+    &:hover {
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+    }
+}
+
+.button-second {
+    background: #fff;
+    border: solid 2px #FF7900;
+    color: #FF7900;
+    transition: 250ms;
+    &:active {
+        background: #FF7900;
+        color: #fff;
+    }
+    &:hover {
+        background: #FF7900;
+        color: #fff;
+    }
+}
+
+.button-tertiary {
+    width: auto;
+    background: #fff;
+    border: none;
+    color: #FF7900;
+    &:hover {
+        text-decoration: underline;
+    }
+    &:active {
+        transform: scale(0.94);
+    }
+}
+
+.button-delete{
+    background-color: #C70000;
+}

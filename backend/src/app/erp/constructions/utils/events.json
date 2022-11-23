@@ -1,0 +1,6 @@
+{
+    "OPEN_REPORT": "open_report",
+    "CLOSE_REPORT": "close_report",
+    "REOPEN_REPORT": "reopen_report",
+    "DELETE_REPORT": "delete_report"
+}

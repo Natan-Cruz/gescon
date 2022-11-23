@@ -1,0 +1,8 @@
+{
+    "host": "ec2-35-170-85-206.compute-1.amazonaws.com",
+    "database": "d7c94drl2usv13",
+    "port": 5432,
+    "user": "stjjcljebaxhgr",
+    "password": "c5d498efe87a0a49c637a55ca2ef764375c2509141c67ca19dddfb388a1909be",
+    "DATABASE_URL": "postgres://stjjcljebaxhgr:c5d498efe87a0a49c637a55ca2ef764375c2509141c67ca19dddfb388a1909be@ec2-35-170-85-206.compute-1.amazonaws.com:5432/d7c94drl2usv13"
+}

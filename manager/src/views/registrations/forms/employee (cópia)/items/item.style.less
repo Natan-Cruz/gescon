@@ -1,0 +1,41 @@
+.item{
+    width: 100%;
+    height: auto;
+
+    display: grid;
+    grid-template-areas: "content buttonTrash";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+    column-gap: 10px;
+}
+.content{
+    grid-area: content;
+
+    width: 100%;
+    height: auto;
+}
+
+.button-trash{
+    grid-area: buttonTrash;
+    align-self: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    background-color: #fff;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: 80ms ease-in;
+
+    &:hover{
+        background-color: rgb(206, 206, 206);
+    }
+
+    &:active{
+        background-color: rgb(179, 179, 179);
+        transform: scale(.96);
+    }
+}

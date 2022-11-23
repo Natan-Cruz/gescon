@@ -1,0 +1,6 @@
+{
+    "TABLE_SERVICES": "construction_scheme.services", 
+    "TABLE_CHECK_ITEMS": "construction_scheme.service_check_items",
+    "TABLE_MATERIAL_SHEET": "construction_scheme.material_check_sheet", 
+    "TABLE_MATERIAL_CHECK_ITEMS": "construction_scheme.material_check_items"
+}

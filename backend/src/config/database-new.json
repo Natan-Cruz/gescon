@@ -1,0 +1,8 @@
+{
+    "host": "node116900-gescon.jelastic.saveincloud.net",
+    "database": "gescon",
+    "port": 5432,
+    "user": "webadmin",
+    "password": "OEKylv49111",
+    "DATABASE_URL": "postgres://webadmin:OEKylv49111@node116900-gescon.jelastic.saveincloud.net:5432/gescon"
+}

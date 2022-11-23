@@ -1,0 +1,25 @@
+@background-color: #f1f1f1;
+
+.btn-circle{
+    background-color: #f70;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    font-size: 36px;
+    transition: transform 200ms;
+    cursor: pointer;
+    border: solid 6px @background-color;
+    right: 0;
+    bottom: 0;
+    width: 66px;
+    height: 66px;
+    z-index: 100;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.719);
+
+    &:active{
+        transform: scale(.8);
+    }
+}

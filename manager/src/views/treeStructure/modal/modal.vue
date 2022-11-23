@@ -1,0 +1,135 @@
+<template>
+    <Modal @close-modal="$emit('close-modal')" :maxWidth="400" >
+
+        <form action="#" @submit.prevent="submit">
+            <wrapper-input label="Nome:" style="margin-bottom:16px" :error="state.errors.name">
+                <input type="text" class="input" id="name" v-model="form.name" ref="input">
+            </wrapper-input>
+        </form>
+        
+        <form-loading-or-error :isLoading="state.isLoading" :error="state.error"></form-loading-or-error>
+
+        <div class="wrapper-buttons">
+            <button class="button button-second text-medium" @click="$emit('close-modal')">Cancelar</button>
+            <button class="button button-primary text-medium" @click="submit">Ok</button>
+        </div>
+    </Modal>
+</template>
+
+<script>
+import axios from "@/services/api"
+import { onMounted, reactive, ref } from 'vue'
+import { notify } from "@kyvg/vue3-notification";
+import Rules from '../../../components/formPage/Rules';
+
+export default {
+    emits: ["close-modal", "push-item", "edit-item"],
+    props: {
+        parent_path: String,
+        item: {
+            type: Object,
+            required: false
+        },
+    },
+    setup(props, { emit }){
+        const input = ref(null)
+        const form = reactive({ name: "", parent_path: "" })
+        const state = reactive({ isLoading: false, error: "", errors: {} });
+
+        const rules = {
+            name: { required: true, maxLength: 128 }
+        }
+
+        onMounted(() => {
+            input.value.focus();
+
+            const { id, name, parent_path } = props.item
+            form.id = id || ""
+            form.name = name || ""
+            form.parent_path = parent_path || ""
+        })
+
+
+        async function submit(){
+            const url = "/financial/cost-center";
+            let method, successulMessage, eventName;
+
+            if(props.item.id){
+                method = "put";
+                successulMessage = "Item editado com sucesso!!";
+                eventName = "edit-item"
+            }else{
+                method = "post";
+                successulMessage = "Item criado com sucesso!!";
+                eventName = "push-item"
+            }
+
+            state.errros = {}
+            state.errors = Rules(form, rules)
+
+            if(Object.entries(state.errors).length)
+                throw new Error("Preencha os campos obrigatórios!")
+
+            state.isLoading = true;
+            state.error = ""
+
+             try {
+                const { data } = await axios({
+                    url,
+                    method,
+                    data: form
+                })
+
+                notify({
+                    title: successulMessage, 
+                    type: "success",
+                    duration: 5000
+                })
+                emit("close-modal")
+                emit(eventName, data)
+            } catch (error) {
+                state.error = error
+            } finally {
+                state.isLoading = false
+            }
+        }
+
+        return {
+            state,
+            form,
+            submit,
+            input
+        }
+    }
+}
+</script>
+
+<style lang="less" scoped>
+    .wrapper-buttons{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        margin-top: 12px;
+    }
+
+    .button{
+        width: 130px;
+        height: 42px;
+        &:first-child{
+            margin-right: 12px;
+        }
+    }
+
+    .container-message{
+        width: 100%;
+        height: auto;
+        background-color: #fcd9d1;
+        padding: 10px;
+        margin: 20px 0;
+        .message{
+            font-size: 1.7em;
+            color: #5a1709
+        }
+    }    
+</style>
